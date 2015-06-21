@@ -56,3 +56,71 @@
 
 \clearpage
 
+\chapter{Результаты преобразования на основе отображения данных в формате XML в семантический формат} \label{APP_B_XML_MAP}
+
+
+\begin{table}[h!]
+\centering
+\caption{Результаты преобразования на основе отображения учебного теста в формате XML в семантический формат}
+\label{table:1}
+
+\begin{tabular}{ |c|  }
+  \hline
+ \textbf{Исходные данные в XML коде}
+ \\
+ \hline
+ \begin{lstlisting}
+<test module="m_InterferenceAndCoherence" 
+    module_ns="Phisics"
+    uri="TestOfInterferenceAndDiffractionFrenel" 
+    name="Test Of Interference And Diffraction Frenel">
+</test>
+ \end{lstlisting}
+ \\
+ \hline
+  \textbf{Код отображения}
+  \\
+  \hline
+\begin{lstlisting}
+<rule id="test" nodeBase="//test" 
+    owlType="learningRu:Test" 
+    instanceNamespace="openeduTests"
+    objectId="{./@uri}" 
+    objectLabel="{./@name}">
+    <objectPropertyMapping nodeBase="." 
+        instanceNamespace="openeduTests"
+        value="{./@name}" 
+        owlProperty="ifmotest:hasGroupOfTasks" 
+        referredRule="task_group" />
+</rule>
+\end{lstlisting}
+    \\
+ \hline
+\textbf{Результат в RDF/XML коде}
+\\
+  \hline
+  \begin{lstlisting}
+<rdf:Description 
+    rdf:about="http://openedu.ifmo.ru/tests/
+    TestOfInterferenceAndDiffractionFrenel">
+  <rdf:type 
+    rdf:resource="http://www.semanticweb.org/
+    k0shk/ontologies/2013/5/learning#Test"/>
+  <label xmlns="http://www.w3.org/2000/01/rdf-schema#">
+    Test Of Interference And Diffraction Frenel
+  </label>
+  <hasGroupOfTasks 
+    xmlns="http://www.semanticweb.org/
+    fedulity/ontologies/2014/4/untitled-ontology-13#" 
+    rdf:resource="http://openedu.ifmo.ru/tests/
+    Test_Of_Interference_And_Diffraction_Frenel"/>
+</rdf:Description>
+\end{lstlisting}
+
+\\
+ \hline
+\end{tabular}
+
+\end{table}
+
+\clearpage
